@@ -1,10 +1,222 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-   <title>My Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Death Ball Market | Crimson Edition</title>
+    <style>
+        :root {
+            --bg-dark: #050505;
+            --card-bg: #111111;
+            --death-red: #ff0000;
+            --dark-red: #8b0000;
+            --text-main: #ffffff;
+            --text-dim: #999999;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 10%;
+            background: rgba(0, 0, 0, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--dark-red);
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            color: var(--death-red);
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--death-red);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(to bottom, #1a0000 0%, #050505 100%);
+            border-bottom: 1px solid #222;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin: 0;
+            color: #fff;
+            text-transform: uppercase;
+            font-style: italic;
+        }
+
+        .hero span {
+            color: var(--death-red);
+        }
+
+        .hero p {
+            color: var(--text-dim);
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 14px 40px;
+            border: none;
+            border-radius: 2px; /* Sharper corners for a more aggressive look */
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%); /* Slanted "Gamer" shape */
+        }
+
+        .btn-primary {
+            background: var(--death-red);
+            color: white;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: #ff3333;
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.7);
+        }
+
+        /* Market Grid */
+        .market-container {
+            padding: 60px 10%;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .item-card {
+            background: var(--card-bg);
+            border: 1px solid #222;
+            padding: 25px;
+            text-align: center;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .item-card:hover {
+            border-color: var(--death-red);
+            background: #1a0505;
+            transform: scale(1.03);
+        }
+
+        .item-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .price {
+            display: block;
+            margin: 15px 0;
+            font-size: 1.2rem;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .rarity {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+
+        footer {
+            background: #000;
+            padding: 50px;
+            text-align: center;
+            border-top: 4px solid var(--death-red);
+            color: #444;
+        }
+    </style>
 </head>
 <body>
-   <h1>Welcome to My Website!</h1>
-   <p>This is hosted on GitHub Pages.</p>
+
+    <nav>
+        <div class="logo">Death Ball <span>Market</span></div>
+        <div class="nav-links">
+            <a href="#">Inventory</a>
+            <a href="#">Trading</a>
+            <a href="#">Values</a>
+            <a href="#" style="color: var(--death-red);">Premium</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>STRIKE <span>HARD</span></h1>
+        <p>THE ULTIMATE DESTINATION FOR EXCLUSIVE DEATH BALL ITEMS</p>
+        <button class="btn btn-primary">Enter Marketplace</button>
+    </header>
+
+    <section class="market-container">
+        <h2 style="border-left: 5px solid var(--death-red); padding-left: 15px; margin-bottom: 40px;">NEW DROPS</h2>
+        <div class="grid" id="market-grid">
+            </div>
+    </section>
+
+    <footer>
+        <p>DEATH BALL MARKET &copy; 2026 | BUILT FOR THE COMMUNITY</p>
+    </footer>
+
+    <script>
+        const items = [
+            { name: "Sanguine Blade", price: "12,000", rarity: "Mythic", img: "🩸" },
+            { name: "Blood Explosion", price: "3,500", rarity: "Legendary", img: "💥" },
+            { name: "Demon Katana", price: "5,200", rarity: "Mythic", img: "👺" },
+            { name: "Dark Matter", price: "1,800", rarity: "Rare", img: "🌑" },
+        ];
+
+        function loadItems() {
+            const grid = document.getElementById('market-grid');
+            grid.innerHTML = items.map(item => `
+                <div class="item-card">
+                    <span class="item-icon">${item.img}</span>
+                    <h3 style="margin: 5px 0;">${item.name}</h3>
+                    <div class="rarity" style="color: ${item.rarity === 'Mythic' ? '#ff0000' : '#888'}">${item.rarity}</div>
+                    <span class="price">${item.price} <small style="color:var(--death-red)">GEMS</small></span>
+                    <button class="btn btn-primary" style="padding: 10px 20px; font-size: 11px; clip-path: none;">View Item</button>
+                </div>
+            `).join('');
+        }
+
+        window.onload = loadItems;
+    </script>
 </body>
 </html>
